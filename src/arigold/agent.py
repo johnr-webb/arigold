@@ -202,13 +202,5 @@ Always be helpful, clear, and efficient in your responses."""
         """
         import asyncio
         
-        try:
-            # Create new event loop if none exists
-            loop = asyncio.get_event_loop()
-        except RuntimeError:
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-        
-        return loop.run_until_complete(
-            self.process_request(user_request, context)
-        )
+        # Use asyncio.run() which properly handles loop creation and cleanup
+        return asyncio.run(self.process_request(user_request, context))
