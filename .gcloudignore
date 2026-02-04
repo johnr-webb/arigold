@@ -1,0 +1,53 @@
+# Google Cloud Functions deployment ignore file
+# This file specifies files and directories to exclude from deployment
+
+# Git
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+tests/
+.coverage
+htmlcov/
+.tox/
+
+# Documentation
+*.md
+docs/
+
+# Examples and scripts
+examples/
+scripts/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Temporary files
+*.log
+tmp/
+temp/
+.DS_Store
