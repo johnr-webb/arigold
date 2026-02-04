@@ -1,4 +1,4 @@
-# Arigold - Orchestrating Agent
+# Ari Gold - Super Agent
 
 > "I am Ari Gold, and I am the best agent in the world" 
 
