@@ -112,7 +112,8 @@ def test_entry_points():
         
         with open(base_path / "src/arigold/main.py", "r") as f:
             tree = ast.parse(f.read())
-            functions = [node.name for node in ast.walk(tree) 
+            # Only get top-level functions
+            functions = [node.name for node in tree.body 
                         if isinstance(node, ast.FunctionDef)]
         
         required = ["arigold_agent", "health_check", "get_orchestrator"]

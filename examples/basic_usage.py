@@ -32,7 +32,11 @@ async def main():
         "What can you help me with?",
         context={"user": "demo_user"}
     )
-    print(f"\nResponse: {result['response'][:200]}...")
+    response_text = result['response']
+    if len(response_text) > 200:
+        print(f"\nResponse: {response_text[:200]}...")
+    else:
+        print(f"\nResponse: {response_text}")
     print(f"Available agents: {result['agents_available']}")
     
     # Example 2: Register a sub-agent (mock)
@@ -52,7 +56,11 @@ async def main():
         "I need to analyze some data. Which agent should I use?",
         context={"task": "data_analysis"}
     )
-    print(f"\nResponse: {result['response'][:200]}...")
+    response_text = result['response']
+    if len(response_text) > 200:
+        print(f"\nResponse: {response_text[:200]}...")
+    else:
+        print(f"\nResponse: {response_text}")
     
     print("\n" + "=" * 60)
     print("Example completed successfully!")

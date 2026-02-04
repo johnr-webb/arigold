@@ -128,9 +128,22 @@ class AgentOrchestrator:
             
         except Exception as e:
             logger.error(f"Error processing request: {str(e)}")
+            
+            # Provide more specific error messages
+            error_message = "I encountered an error processing your request."
+            error_type = type(e).__name__
+            
+            if "authentication" in str(e).lower() or "api key" in str(e).lower():
+                error_message = "Authentication error. Please check your API credentials."
+            elif "rate limit" in str(e).lower() or "quota" in str(e).lower():
+                error_message = "Rate limit or quota exceeded. Please try again later."
+            elif "timeout" in str(e).lower():
+                error_message = "Request timed out. Please try again."
+            
             return {
                 "error": str(e),
-                "response": "I encountered an error processing your request.",
+                "error_type": error_type,
+                "response": error_message,
                 "agents_available": self.list_agents(),
             }
 

@@ -35,7 +35,7 @@ def get_orchestrator() -> AgentOrchestrator:
 
 
 @functions_framework.http
-def arigold_agent(request: Request) -> tuple[Any, int]:
+def arigold_agent(request: Request) -> tuple[str | dict, int] | tuple[str, int, dict]:
     """
     HTTP Cloud Function entry point for the Arigold agent.
     
@@ -43,7 +43,7 @@ def arigold_agent(request: Request) -> tuple[Any, int]:
         request: Flask request object
         
     Returns:
-        Tuple of (response_data, status_code)
+        Tuple of (response_data, status_code) or (response_data, status_code, headers)
     """
     # Set CORS headers for the preflight request
     if request.method == "OPTIONS":
