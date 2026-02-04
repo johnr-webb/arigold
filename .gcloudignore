@@ -1,0 +1,40 @@
+# Google Cloud Functions Configuration
+# This file is used by the gcloud CLI to deploy the function
+
+# Runtime environment
+runtime: python312
+
+# Entry point function name
+entry_point: arigold_agent
+
+# Environment variables
+env_variables:
+  ARIGOLD_PROJECT_ID: "your-project-id"
+  ARIGOLD_LOCATION: "us-central1"
+  ARIGOLD_LOG_LEVEL: "INFO"
+
+# Secret environment variables (managed separately)
+# GOOGLE_API_KEY should be set via Secret Manager
+
+# Memory and timeout settings
+memory: 512MB
+timeout: 60s
+
+# HTTP settings
+max_instances: 10
+min_instances: 0
+
+# VPC connector (optional, for private resources)
+# vpc_connector: projects/PROJECT_ID/locations/REGION/connectors/CONNECTOR_NAME
+
+# Service account (optional, uses default if not specified)
+# service_account: your-service-account@your-project.iam.gserviceaccount.com
+
+# Ingress settings (allow all traffic by default)
+ingress_settings: ALLOW_ALL
+
+# Build settings
+build:
+  source: .
+  environment_variables:
+    GOOGLE_BUILDABLE: "functions"
