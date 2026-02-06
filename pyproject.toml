@@ -10,7 +10,7 @@ authors = [
 ]
 
 dependencies = [
-    "google-cloud-functions-framework>=3.0.0",
+    "functions-framework>=3.0.0",
     "google-genai>=0.1.0,<1.0.0",
     "pydantic>=2.0.0",
     "pydantic-settings>=2.0.0",
@@ -24,10 +24,6 @@ dev = [
     "ruff>=0.1.0",
 ]
 
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_backend"
-
 [tool.black]
 line-length = 100
 target-version = ["py310"]
@@ -39,3 +35,7 @@ target-version = "py310"
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W"]
 ignore = []
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"

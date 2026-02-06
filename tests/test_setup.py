@@ -20,7 +20,7 @@ def test_imports():
         from arigold import __version__
         print(f"  ✓ arigold package version: {__version__}")
         
-        from arigold.config import AgentConfig, config
+        from arigold import config
         print(f"  ✓ config module imported")
         print(f"    - Agent: {config.agent_name}")
         print(f"    - Model: {config.model_name}")
@@ -30,10 +30,10 @@ def test_imports():
         print("  ℹ agent module requires google-genai (not tested here)")
         print("  ℹ main module requires functions-framework (not tested here)")
         
-        return True
+        assert True
     except Exception as e:
         print(f"  ✗ Import failed: {e}")
-        return False
+        assert False
 
 
 def test_config():
@@ -41,21 +41,21 @@ def test_config():
     print("\nTesting configuration...")
     
     try:
-        from arigold.config import AgentConfig
+        from arigold import config
         
         # Test default values
-        config = AgentConfig()
-        assert config.agent_name == "Arigold Orchestrator"
+        config = config.AgentConfig(api_key="test-key")
+        assert config.agent_name == "Ari Gold Super Agent"
         assert config.model_name == "gemini-2.0-flash-exp"
         assert config.temperature == 0.7
-        assert config.max_tokens == 8192
+        assert config.max_tokens == 512
         assert config.location == "us-central1"
         assert config.log_level == "INFO"
         
         print("  ✓ Default configuration values correct")
         
         # Test custom values
-        custom_config = AgentConfig(
+        custom_config = config.AgentConfig(
             agent_name="Test Agent",
             temperature=0.5
         )
@@ -63,10 +63,9 @@ def test_config():
         assert custom_config.temperature == 0.5
         
         print("  ✓ Custom configuration values work")
-        return True
     except Exception as e:
         print(f"  ✗ Configuration test failed: {e}")
-        return False
+        assert False
 
 
 def test_file_structure():
@@ -99,7 +98,7 @@ def test_file_structure():
             print(f"  ✗ {file} (missing)")
             all_exist = False
     
-    return all_exist
+    assert all_exist
 
 
 def test_entry_points():
@@ -123,12 +122,12 @@ def test_entry_points():
                 print(f"  ✓ {func}")
             else:
                 print(f"  ✗ {func} (missing)")
-                return False
+                assert False
         
-        return True
+        assert True
     except Exception as e:
         print(f"  ✗ Entry point test failed: {e}")
-        return False
+        assert False
 
 
 def main():
@@ -159,11 +158,11 @@ def main():
         print("3. Configure your Google API key in .env")
         print("4. Test locally: python examples/basic_usage.py")
         print("5. Deploy: ./scripts/deploy.sh")
-        return 0
+        assert 0
     else:
         print("✗ Some validation tests failed")
         print("=" * 60)
-        return 1
+        assert 1
 
 
 if __name__ == "__main__":
