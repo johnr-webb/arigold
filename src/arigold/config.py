@@ -16,7 +16,7 @@ class AgentConfig(BaseSettings):
     region: str = "us-central1"
     
     # Google API Authentication
-    api_key: str
+    api_key: str = "MISSING_KEY"
     
     # Agent Configuration
     agent_name: str = "Ari Gold Super Agent"

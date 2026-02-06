@@ -8,10 +8,6 @@ Google API credentials.
 import sys
 from pathlib import Path
 
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
-
-
 def test_imports():
     """Test that all modules can be imported."""
     print("Testing imports...")
@@ -22,8 +18,8 @@ def test_imports():
         
         from arigold import config
         print(f"  ✓ config module imported")
-        print(f"    - Agent: {config.agent_name}")
-        print(f"    - Model: {config.model_name}")
+        print(f"    - Agent: {config.config.agent_name}")
+        print(f"    - Model: {config.config.model_name}")
         
         # Note: agent module requires google-genai which may not be installed
         # This is expected for local validation
@@ -44,13 +40,13 @@ def test_config():
         from arigold import config
         
         # Test default values
-        config = config.AgentConfig(api_key="test-key")
-        assert config.agent_name == "Ari Gold Super Agent"
-        assert config.model_name == "gemini-2.0-flash-exp"
-        assert config.temperature == 0.7
-        assert config.max_tokens == 512
-        assert config.location == "us-central1"
-        assert config.log_level == "INFO"
+        config_instance = config.AgentConfig(api_key="test-key")
+        assert config_instance.agent_name == "Ari Gold Super Agent"
+        assert config_instance.model_name == "gemini-2.0-flash-exp"
+        assert config_instance.temperature == 0.7
+        assert config_instance.max_tokens == 512
+        assert config_instance.location == "us-central1"
+        assert config_instance.log_level == "INFO"
         
         print("  ✓ Default configuration values correct")
         
